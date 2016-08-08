@@ -1,7 +1,18 @@
 package models
 
 import scalikejdbc._
-import org.joda.time.{DateTime}
+import org.joda.time.DateTime
+import play.api.libs.json.Json
+
+case class UsersView(
+  id: Long,
+  userId: String,
+  name: String
+)
+
+object UsersView {
+  implicit val writes = Json.writes[UsersView]
+}
 
 case class Users(
   id: Long,
