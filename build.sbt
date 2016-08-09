@@ -14,10 +14,24 @@ libraryDependencies ++= Seq(
   "mysql"                   % "mysql-connector-java"         % "5.1.39",
   "org.scalikejdbc"        %% "scalikejdbc"                  % "2.4.2",
   "org.scalikejdbc"        %% "scalikejdbc-config"           % "2.4.2",
-  "org.scalikejdbc"        %% "scalikejdbc-play-initializer" % "2.5.1"
+  "org.scalikejdbc"        %% "scalikejdbc-play-initializer" % "2.5.1",
+  "com.offbytwo.keyczar"    % "keyczar"                      % "0.71g"
 )
-
-resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 
 // for scalikejdbc-mapper-generator
 scalikejdbcSettings
+
+// for flyway
+//Seq(flywaySettings: _*)
+
+flywayDriver := "com.mysql.jdbc.Driver"
+
+flywayUrl :=  "jdbc:mysql://localhost:3306/my_twitter"
+
+flywayLocations := Seq("filesystem:conf/db/migration")
+
+flywayUser := "root"
+
+flywayPassword := ""
+
+flywaySchemas := Seq("my_twitter")

@@ -13,13 +13,11 @@ class UsersController @Inject()(
 ) extends Controller with ControllerHelper {
 
   def list = Action { implicit req =>
-    val result = for {
-      users <-  DB localTx { implicit session =>
+    (for {
+      users <- DB localTx { implicit session =>
         usersService.list.right
       }
-    } yield {
-      Ok(Json.obj("users" -> users))
-    }
-    result.toResult
+    } yield Ok(Json.obj("users" -> users))).toResult
   }
+
 }
